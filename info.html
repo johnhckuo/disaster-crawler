@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head prefix="og: http://ogp.me/ns#">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Map Project</title>
+		<!-- libraries-->
+		<script type="text/javascript" src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+		<script type='text/javascript' src='http://canvasjs.com/assets/script/canvasjs.min.js'></script>
+		<!-- custom files-->
+		<link rel="stylesheet" type="text/css" href="css/test.css">
+		<script type="text/javascript" src="http://d3js.org/topojson.v1.min.js"></script>
+		<script type="text/javascript" src="js/city.js"></script>
+		<script type="text/javascript" src="js/temperature.js"></script>
+		<script type="text/javascript" src="js/all.js"></script>
+		<script type="text/javascript" src="js/time.js"></script>
+		<link rel="stylesheet" href="css/all.css">
+	</head>
+	<body>
+
+		<div id="LoadingImage" style="display: none">
+		<img src="img/loading.gif" />
+		</div>
+		<div id='map'>
+			
+			<div id='ruler'>
+				<label>32 公里</label>
+				<div class="widget-scale-ruler" style="width: 70px;"></div>
+			</div>
+			<svg  viewBox="0 0 1366 768">
+				<g id='pathCanvas'></g>
+				<g id='circleCanvas'>
+				</g>
+			</svg>
+			
+		</div>
+
+		<div id='panel'>
+			<span id='title'></span><br/>
+	
+		</div>
+
+		<div id='info'>
+			<ul >
+			<li  id='toogle' onclick="toogle()">切換為行政區</li>
+			<li  onclick="disaster('rainfall',this)">降雨</li>
+			<li  onclick="disaster('uv',this)">紫外線</li>
+			<li  onclick="disaster('pm25',this)">空氣汙染</li>
+			<li  onclick="disaster('earthquake',this)">地震發生地區</li>
+			<li  id='history' onclick="extend('history',this)" >歷史資料</li>
+
+				<select id='history_fade' class='hidden' onChange="extend(this.options[this.selectedIndex].value)">
+					<option value="#">請選擇</option>
+					<option value="temp_history">氣溫</option>
+					<option value="rain_history">降雨</option>
+					<option value="#">未定</option>
+				</select>
+			
+
+				<select id='rain_fade' class='hidden' onChange="if (this.selectedIndex == 1) taipei_rain('single');else if (this.selectedIndex == 2) kaohsiung_rain('single'); else if (this.selectedIndex == 3) taichung_rain('single');">
+					<option value="#">請選擇</option>
+					<option >台北降雨</option>
+					<option >高雄降雨</option>
+					<option >台中降雨</option>
+				</select>
+	
+				<select id='temp_fade' class='hidden' onChange="temperature(this.options[this.selectedIndex].value,null,true);">
+					<option value="#">請選擇</option>
+					<option value='台北市'>台北氣溫</option>
+					<option value='高雄市'>高雄氣溫</option>
+					<option value='台中市'>台中氣溫</option>
+				</select>
+			
+				<select id='temp_choose' class='hidden' >
+					<option value="#">請選擇</option>
+					<option >依地區</option>
+					<option >依時間</option>
+				</select>
+
+				
+
+				
+
+				<ul id = 'mix_fade' style="float:left" class='hidden'>
+						<li  onclick= "taipei_rain('mix',this)">台北降雨</li>
+						<li  onclick= "kaohsiung_rain('mix',this)">高雄降雨</li>
+						<li  onclick= "taichung_rain('mix',this)">台中降雨</li>
+				</ul>
+			</ul>
+			
+
+			<ul>
+			
+			</ul>
+			<ul id='temp_time' class='hidden' style="clear:both">
+	
+					<li  >2014</li>
+					<li  >2013</li>
+					<li  >2012</li>
+					<li  >2011</li>
+					<li  >2010</li>
+					<li  >2009</li>
+					<li  >2008</li>
+			</ul>
+			<ul id='temp_place' class='hidden' style="clear:both">
+					<li  onclick= "temperature_fetch('高雄市',this,'2015',true)" style="clear:both">高雄市</li>
+					<li  onclick= "temperature_fetch('台北市',this , '2015',true)">台北市</li>
+					<li  onclick= "temperature_fetch('台中市',this , '2015',true)">台中市</li>
+	
+			</ul>
+			
+			<ul id='mix_analysis' class='hidden'>
+				<li   onclick="extend('mix')">各年交叉分析</li>
+			</ul>
+			<ul id='mix_city' class='hidden'>
+				
+				<li  onclick="taipei_rain('mix',this)">台北市</li>
+				<li  onclick= "kaohsiung_rain('mix',this)">高雄市</li>
+				<li  onclick= "taichung_rain('mix',this)">台中市</li>
+			</ul>
+		</div>
+		
+		<div id='chart'>
+
+			<span id='quakeTitle'></span><br/>
+			<span id='quakeContent'></span><br / >
+		</div>
+		<div id='description'>
+			<div id='rain'>
+				<table border="1">
+				<tr>
+				　	<td bgcolor='#770077'></td>
+					<td>超大豪雨(每小時大於20mm)</td>
+				</tr>
+				<tr>
+				　	<td bgcolor='#003377'></td>
+					<td>大豪雨(每小時大於20mm)</td>
+				</tr>
+				　<tr>
+				　	<td bgcolor='#220088'></td>
+					<td>豪雨(每小時大於20mm)</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#0000FF'></td>
+					<td>大雨(每小時大於15mm)</td>
+				　</tr>
+				
+				</table>
+				<table>
+					<tr>
+				　	<td bgcolor='#009FCC'></td>
+					<td>小雨(每小時大於10mm)</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#33CCFF'></td>
+					<td>毛毛雨(每小時大於5mm)</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#ffffff'></td>
+					<td>晴朗無雨</td>
+				　</tr>
+				</table>
+			</div>
+			<div id='earthquake'>
+				
+
+				
+			
+				<table border="1">
+				　<tr>
+				　	<td bgcolor='#000000'></td>
+					<td>規模9.0</td>
+					<td>自地震觀測以來尚未發<br>生過</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#880000'></td>
+					<td>規模8.5~9.0</td>
+					<td>為超級之地震,全世界約<br>五至十年發生一次。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#AA0000'></td>
+					<td>規模8.0~8.4</td>
+					<td>為第一級大地震，震央<br>在海底會引起大海嘯。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#FF0000'></td>
+					<td>規模7.0~7.9</td>
+					<td>為相當大的地震，全世<br>界約每年發生二十次。</td>
+				　</tr>
+				
+				
+				</table>
+				<table border="1">
+				<tr>
+				　	<td bgcolor='#CC0000'></td>
+					<td>規模6.0~6.9</td>
+					<td>世界上任何頭等地震觀測所可測得此地震。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#FF0000'></td>
+					<td>規模5.0~5.9</td>
+					<td>有感區域不大，震央附近可能造成災害。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#FF3333'></td>
+					<td>規模4.0~4.9</td>
+					<td>通常不發生災害，震央附近有感。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#FF8888'></td>
+					<td>規模3.0~3.9</td>
+					<td>在震央附近人體可以感覺出來。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#FFCCCC'></td>
+					<td>規模 < 2.9</td>
+					<td>人體感覺不出來，需要高倍率之地震儀方能測出。</td>
+				　</tr>
+				</table>
+			</div>
+			<div id='uv'>
+				<table border="1">
+				　<tr>
+				　	<td bgcolor='purple'></td>
+					<td>極其危險</td>
+					<td>採取所有的保護措施包括佩戴太陽鏡使用防曬霜，用長袖寬鬆襯衫和褲子保護皮膚。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='red'></td>
+					<td>極高風險</td>
+					<td>暴露的皮膚會快速灼傷。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='orange'></td>
+					<td>很大傷害風險</td>
+					<td>佩戴太陽鏡使用SPF大等於15的防曬霜，使用防曬服和太陽帽保護皮膚。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='yellow'></td>
+					<td>較輕傷害風險</td>
+					<td>使用太陽鏡和防曬霜，穿戴衣帽以保護皮膚並在中午陽光強烈時尋找遮蔽處.</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='green'></td>
+					<td>無危險</td>
+					<td>佩戴太陽鏡</td>
+				　</tr>
+				</table>
+			</div>
+
+			<div id='pm25'>
+				<table border="1">
+				　<tr>
+				　	<td bgcolor='#633300'></td>
+					<td>有害<br/>(PSI >= 300)</td>
+					<td>對一般民眾身體健康無影響。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#800080'></td>
+					<td>非常不良(200~299)</td>
+					<td>對敏感族群健康無立即影響。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#ff0000'></td>
+					<td>不良(101~199)</td>
+					<td>對敏感族群會有輕微症狀惡化的現象，如臭氧濃度在此範圍，眼鼻會略有刺激感。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#ffff00'></td>
+					<td>普通(51~100)</td>
+					<td>對敏感族群會有明顯惡化的現象，降低其運動能力；一般大眾則視身體狀況，可能產生各種不同的症狀。</td>
+				　</tr>
+				<tr>
+				　	<td bgcolor='#00ff00'></td>
+					<td>良好<br/>(PSI < 50)</td>
+					<td>對敏感族群除了 不適症狀顯著惡化並造成某些疾病提早開始；減低正常人的運動能力。</td>
+				　</tr>
+				</table>
+			</div>
+		</div>
+		<div id="sidebar">
+		<ul>
+			<li><a href="index.html"><img src="img/home.png" alt=""></a></li>
+			<li><a href="grouppage.html"><img src="img/group.png" alt=""></a></li>
+			<li><a href="aboutus.html"><img src="img/info.png" alt=""></a></li>
+			<li><a href="info.html"><img src="img/information.png" alt=""></a></li>
+		</ul>
+		</div>
+	<div class="panel">
+		<p>Copyright © 2015 國立高雄大學資管系 All Rights Reserved.</p>
+	</div>	
+	<div class="footer_time"><p>高雄<img src="img/sunny.png" alt=""></p><label>今天溫度為</label> 30°c </div>
+	</body>
+</html>
