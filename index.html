@@ -4,21 +4,127 @@
 	<meta charset="UTF-8">
 	<title>首頁</title>
 	<script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+
+	<script type="text/javascript" src="http://d3js.org/topojson.v1.min.js"></script>
 	<link rel="stylesheet" href="css/all.css">
 	<script type="text/javascript" src="js/time.js"></script>
+	<style>
+	@media (min-width: 1800px) {
+		#map{
+
+			position:relative;
+
+			width:700px;
+			height:50%;
+			top:-150px;
+			margin:auto;
+			
+			border-radius: 5px;
+		
+		}
+		svg{
+			width:1000px;
+			height:1100px;
+
+		}
+		path{
+			border:1px solid white;
+		}
+		#county-boundary {
+			  fill: none;
+			  stroke: #fff;
+			  stroke-dasharray: 5,0;
+			  stroke-linejoin: round;
+
+		}
+		#panel{
+			position: absolute;
+			z-index:99;
+			height: 20px;
+			width: 50px;
+			background-color: #fff;
+			-webkit-transition:all .1s;
+			border-radius: 5px;
+			background-color: #000;
+			background-color:rgba(0,0,0,0.3); 
+			color:#fff;
+			padding:10px;
+		}
+	}
+	@media (max-width: 1500px) {  
+		#map{
+
+			position:relative;
+
+			width:700px;
+			height:50%;
+			top:-150px;
+			left:80px;
+			margin:auto;
+			
+			border-radius: 5px;
+		
+		}
+		svg{
+			width:800px;
+			height:900px;
+
+		}
+		path{
+			border:1px solid white;
+		}
+		#county-boundary {
+			  fill: none;
+			  stroke: #fff;
+			  stroke-dasharray: 5,0;
+			  stroke-linejoin: round;
+
+		}
+		#panel{
+			position: absolute;
+			z-index:99;
+			height: 20px;
+			width: 50px;
+			background-color: #fff;
+			-webkit-transition:all .1s;
+			border-radius: 5px;
+			background-color: #000;
+			background-color:rgba(0,0,0,0.3); 
+			color:#fff;
+			padding:10px;
+		}
+		.wrapper > .header{
+			position:relative;
+			margin:-480px auto;
+			width:600px;
+			z-index:2;
+		}
+	}
+
+	</style>
 </head>
 <body>
+	<div id='map'>
+		<svg  viewBox="0 0 1366 768">
+					<g id='pathCanvas'></g>
+		</svg>
+	</div>
 	<div class="wrapper">
 		<div class="header">
 			<ul class="headershadow">
-				<li class="sprite sprite-icon-UV">紫外線</li>
-				<li class="sprite sprite-icon-rainy">降雨量</li>
-				<li class="sprite sprite-icon-Earthquake">地震</li>
-				<li class="sprite sprite-icon-airpollution">空氣污染</li>
-				<li class="sprite sprite-icon-data">歷史資料</li>
+
+				<li class="sprite sprite-icon-UV"  onclick="javascript:location.href='info.html?type=uv'">紫外線</li>
+				<li class="sprite sprite-icon-rainy" onclick="javascript:location.href='info.html?type=rain'">降雨量</li>
+				<li class="sprite sprite-icon-Earthquake" onclick="javascript:location.href='info.html?type=earthquake'">地震</li>
+				<li class="sprite sprite-icon-airpollution" onclick="javascript:location.href='info.html?type=air'">空氣污染</li>
+				<li class="sprite sprite-icon-data" onclick="javascript:location.href='info.html?type=history'">歷史資料</li>
 			</ul>
 		</div>
 		
+	</div>
+	<div id='panel' style="display:none">
+		<span id='title'></span><br/>
 	</div>
 	<div id="sidebar">
 		<ul>
@@ -31,7 +137,7 @@
 	<div class="panel">
 		<p>Copyright © 2015 國立高雄大學資管系 All Rights Reserved.</p>
 	</div>	
-	<div class="footer_time"><p>高雄<img src="img/sunny.png" alt=""></p><label>今天溫度為</label> 30°c </div>
+	<div class="footer_time"><p>高雄市<img  alt=""></p><label>今天溫度為</label><span id='realtime_temp'></span> </div>
 
 </body>
 </html>

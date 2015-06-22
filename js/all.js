@@ -36,13 +36,45 @@ var toogle = function(){
     
   }
 
-  
-
 
   init();
 }
 
+var check_get = function(){
+  var $_GET = {};
+
+  document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+      function decode(s) {
+          return decodeURIComponent(s.split("+").join(" "));
+      }
+
+      $_GET[decode(arguments[1])] = decode(arguments[2]);
+  });
+  if ($_GET['type'] != null){
+     if ($_GET['type']=='uv'){
+        disaster('uv',null);
+     }else if ($_GET['type']=='rain'){
+        disaster('rainfall',null);
+     }else if ($_GET['type']=='air'){
+        disaster('pm25',null);
+     }else if ($_GET['type']=='history'){
+        extend('history',null);
+     }else if ($_GET['type']=='earthquake'){
+        disaster('earthquake',null);
+     }
+  }
+}
+
+
 var init = function(){
+
+  updateWeather();
+  check_get();
+
+  $(".footer_time").hover(function(){
+    $(".panel").slideToggle("fast");
+  });
+
   var Cname = 'C_Name';
   var Tname;
 
@@ -74,7 +106,7 @@ var init = function(){
  });
 
 
-  var mapType; 
+  var mapType , fill; 
 
   if (type == 'county'){
     mapType = 'county-boundary'
@@ -91,20 +123,22 @@ var init = function(){
 
   if (type == 'county'){
   d3.select("svg").selectAll("path").on("mouseenter", function() {          //title div 顯示滑鼠所指向的縣市/行政區
+      fill = $(this).attr("fill");
       $(this).attr("fill", '#00DD77');
       $('#title').html($(this).attr( "name" ));
       $('#panel').css({"height": "20px","width": "50px"});
     }).on("mouseout", function() {
-      $(this).attr("fill", '#55AA00');
+      $(this).attr("fill", fill);
     });
 
   }else{
     d3.select("svg").selectAll("path").on("mouseenter", function() {          //title div 顯示滑鼠所指向的縣市/行政區
+      fill = $(this).attr("fill");
       $(this).attr("fill", '#00DD77');
       $('#title').html($(this).attr( "class" ));
       $('#panel').css({"height": "20px","width": "50px"});
     }).on("mouseout", function() {
-      $(this).attr("fill", '#55AA00');
+      $(this).attr("fill", fill);
     });
   }
   
@@ -142,7 +176,8 @@ var disaster = function(type,button){
     $('#rain_fade').fadeOut("slow");
     $('#temp_choose').fadeOut("slow");
     $('#history_fade').fadeOut("slow");
-     toogleButton(button);
+    if (button!=null)
+      toogleButton(button);
 
      var fill;
      d3.select("svg").selectAll("path").on('mouseout',function(){
@@ -161,8 +196,7 @@ var disaster = function(type,button){
       });
 
      if (type == 'rainfall'){
-     // d3.select("svg").selectAll("path").off("mouseenter");
-     // d3.select("svg").selectAll("path").off("mouseout");
+
      $("#LoadingImage").show();
       $.ajax({ 
         type:'GET', 
@@ -200,7 +234,6 @@ var disaster = function(type,button){
         }
 
 
-           // $('#container').append("<li>"+"<span>"+str[i].Title+"</span></li>");
             
          }
 
@@ -220,7 +253,6 @@ var disaster = function(type,button){
         var color = d3.scale.linear().domain([0,5]).range(["#FFB3FF","#770077"]);
         var path = d3.geo.path().projection( // 路徑產生器
     d3.geo.mercator().center([121,24]).scale(scale) // 座標變換函式
-   // d3.geo.mercator()
   );
         for (var i = 0; i < data.length ; i++){
           $('path').each(function() {
@@ -242,7 +274,6 @@ var disaster = function(type,button){
         }
 
 
-           // $('#container').append("<li>"+"<span>"+str[i].Title+"</span></li>");
             
          }
       });
@@ -290,13 +321,7 @@ var disaster = function(type,button){
       
       $("#chart").html($('#pm25').html())
       $("#chart td:nth-child(3)").css({"text-align":'left','padding-left':'5px'});
-    //  $("#chart").html("<div id='pm25'><table border='1'><tr><td bgcolor='#633300'></td><td>有害(PSI >= 300)</td><td>對一般民眾身體健康無影響。</td></tr><tr><td bgcolor='#800080'></td><td>非常不良(200 <= PSI <= 299)</td><td>對敏感族群健康無立即影響。</td></tr> <tr><td bgcolor='#ff0000'></td><td>不良(101 <= PSI <= 199)</td><td>對敏感族群會有輕微症狀惡化的現象，如臭氧濃度在此範圍，眼鼻會略有刺激感。</td></tr><tr><td bgcolor='#ffff00'></td><td>普通(51 <= PSI <= 100)</td><td>對敏感族群會有明顯惡化的現象，降低其運動能力；一般大眾則視身體狀況，可能產生各種不同的症狀。</td></tr><tr>
-    //    　 <td bgcolor='#00ff00'></td>
-     //     <td>良好(PSI < 50)</td>
-    //      <td>對敏感族群除了 不適症狀顯著惡化並造成某些疾病提早開始；減低正常人的運動能力。</td>
-    //    　</tr>
-    //    </table>
-    //  </div>");
+
 
      }else if(type == 'earthquake'){
 
@@ -903,6 +928,40 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+
+function updateWeather(){
+
+  $.ajax({ 
+        type:'GET', 
+        dataType:'jsonp', 
+       url:'https://www.kimonolabs.com/api/98n56rjs?apikey=x3C3wO491D2hBEkPXsPJ9CgRJXzlEN8V', 
+         success:function (data){
+
+        var data = data.results.collection1[0];
+        if (data.weather == '多雲'){
+          $('.footer_time img').attr("src","img/sunny_cloud.png")
+
+        }else if (data.weather == '陰'){
+          $('.footer_time img').attr("src","img/cloudy.png")
+        }else if (data.weather == '晴'){
+          $('.footer_time img').attr("src","sunny.png")
+        }else if (data.weather == 'X'){
+          $('.footer_time img').attr("src","img/cloudy.png")
+        }else if (data.weather == '陰有雷雨' || data.weather == '陰大雷雨' ){
+          $('.footer_time img').attr("src","img/cloudy_rainy.png")
+        }else if (data.weather == '多雲有雷雨'){
+          $('.footer_time img').attr("src","img/rainy_cloudy_sunny.png")
+        }
+  
+  
+  
+        $('#realtime_temp').html(" "+data.temperature+"°c ")
+        
+      }
+
+    });
+  
 }
  /* $.when(
   // Get the HTML
