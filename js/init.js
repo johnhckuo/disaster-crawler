@@ -20,7 +20,7 @@ function updateWeather(){
         }else if (data.weather == '陰'){
           $('.footer_time img').attr("src","img/cloudy.png")
         }else if (data.weather == '晴'){
-          $('.footer_time img').attr("src","sunny.png")
+          $('.footer_time img').attr("src","img/sunny.png")
         }else if (data.weather == 'X'){
           $('.footer_time img').attr("src","img/cloudy.png")
         }else if (data.weather == '陰有雷雨' || data.weather == '陰大雷雨' ){
@@ -33,6 +33,8 @@ function updateWeather(){
   
         $('#realtime_temp').html(" "+data.temperature+"°c ")
         $(".footer_time").css("opacity","0.5");
+        $(".footer_time").on("mouseover",function(){$(".footer_time").css("opacity","1"); });
+        $(".footer_time").on("mouseout",function(){$(".footer_time").css("opacity",".5"); });
       }
 
     });
