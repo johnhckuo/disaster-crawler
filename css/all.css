@@ -1,0 +1,370 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body{
+	background-image: url(../img/background.png);
+	background-repeat: no-repeat;
+
+}
+
+select{
+	width:100px; 
+	height:25px; 
+	background:rgba(0,0,0,0.5);
+	color:white; 
+	border-color:black;
+	margin:4px 0px 0px 2px;
+	box-shadow:0px 2px 10px -1px rgba(0,0,0,0.5);
+}
+
+body{
+	font-family:微軟正黑體;
+}
+.wrapper{
+	margin:0 auto;
+	width:1000px;
+	font-family:微軟正黑體;
+	background-color:rgba(0,0,0,0.5);
+
+}
+
+
+.wrapper > .header{
+	margin:0 auto;
+	width:600px;
+}
+.wrapper > .header > ul{
+	margin:110px auto;
+	width:500px;
+	color:white;
+}	
+
+.wrapper > .header > ul > li{
+	float:left;
+	display:inline-block;
+	padding:10px;
+	height:90px;
+	width:80px;
+	line-height:160px;
+	text-align:center;
+	background-color: rgba(25,25,25,0.5);
+	font-size:16px;
+	padding:10px;
+	box-shadow:1px 2px 10px -3px rgba(0,0,0,0.5);
+}
+
+.wrapper > .header > ul > li:hover{
+	cursor:pointer;
+	box-shadow:1px 2px 10px -3px rgba(255,255,255,0.5);
+	height:100px;
+	-webkit-transition: all .2s ease-in-out;
+  	-o-transition: all .2s ease-in-out;
+  	transition: all .2s ease-in-out;
+}
+
+#sidebar:hover{
+	cursor:pointer;
+}
+
+#sidebar{ 
+    width: 60px;
+    height:auto;
+	position:absolute;
+	right:0px;
+	background-color: rgba(0,0,0,0.3);
+	box-shadow: -2px 2px 5px -2px rgba(0,0,0,0.3);
+	color:white;
+	top:110px;
+}
+
+#sidebar > ul > li{
+	height:50px;
+	width:50px;
+	padding:5px;
+	margin-top:5px;
+	margin-bottom:10px;
+	opacity:0.3;
+}
+
+#sidebar > ul > li:hover{
+	height:50px;
+	width:50px;
+	opacity:1;
+	-webkit-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+  	transition: all .3s ease-in-out;
+}
+
+
+#sidebar > ul > li > a >img{
+	height:30px;
+	width:30px;
+	padding:10px;
+}
+
+
+.headershadow{
+	box-shadow: 0px 2px 5px 2px rgba(0,0,0,0.5);
+}
+
+.footer_time{
+	bottom:40px;
+	right:0px;
+	width:auto;
+	height:50px;
+	font-family:微軟正黑體;
+	font-size:32px;
+	color:white;
+	position:absolute;
+	font-weight: bold;
+	font-border:1px;
+	padding:5px 15px;
+	border-radius:20px;
+	opacity:0.5;
+}
+
+.footer_time:hover{
+	opacity:1;
+	cursor:pointer;
+	-webkit-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+  	transition: all .3s ease-in-out;
+}
+
+label{
+font-size:20px;
+}
+
+#sidebar > ul > li > hr{
+	width:120%;
+}
+
+.footer_time > p{
+	margin-bottom:10px;
+	font-size:40px;
+}
+
+.footer_time > p > img{
+	height:42px;
+	width:42px;
+	float:right;
+	background-image: url(../img/weather.png);
+	background-position: -5px -5px;
+}
+
+
+.sprite {
+    background-repeat: no-repeat;
+    background-size:50px 50px;
+    display: block;
+    padding:50px;
+}
+
+.sprite-icon-UV {
+    width: 80px;
+    height: 100px;
+    background-position: 25px 15px;
+    background-image: url(../img/UV.png);
+}
+
+.sprite-icon-data {
+    width: 80px;
+    height: 100px;
+    background-position: 25px 15px;
+    background-image: url(../img/data.png);
+}
+
+.sprite-icon-rainy {
+    width: 80px;
+    height: 100px;
+    background-position: 25px 15px;
+    background-image: url(../img/rainy.png);
+}
+
+.sprite-icon-Earthquake {
+    width: 80px;
+    height: 100px;
+    background-position: 25px 15px;
+    background-image: url(../img/Earthquake.png);
+}
+
+
+.sprite-icon-airpollution {
+    width: 80px;
+    height: 100px;
+    background-position: 25px 15px;
+    background-image: url(../img/airpollution.png);
+}
+
+.wrapper > .header > .groupintroduction{
+	float:left;
+	width:100%;
+	height:auto;
+	background-color: rgba(0,0,0,0.5);
+	margin:110px auto;
+	box-shadow:0px 21px 5px -14px rgba(0,0,0,0.3);
+	padding-bottom:20px;
+}
+
+.groupheader{
+	text-align: center;
+	padding:10px 0px 5px 0px;
+	color:rgba(255,255,255,1);
+	font-size:20px;
+}
+
+.wrapper > .header > .groupintroduction > hr{
+background-color:rgba(255,255,255,0.5);
+border:0; 
+height:1px; 
+}
+
+.wrapper > .header > .groupintroduction > .groupcontent> .memberinfo{
+	padding:20px 20px 0px 20px;
+	float:left;
+	margin-left:20px;
+}
+
+.wrapper > .header > .groupintroduction > .groupcontent> .memberinfo >.member_icon{
+	float:left;
+	border-size:0px;
+	border-width:solid;
+}
+.wrapper > .header > .groupintroduction > .groupcontent> .memberinfo >.member_icon > img{
+	border-radius:200px;
+	height:100px;
+	width:100px;
+  	box-shadow:0px 0px 0px 2px #fff, 0px 4px 10px -2px #000000;
+  	opacity:0.5;
+}
+
+.wrapper > .header > .groupintroduction > .groupcontent> .memberinfo >.member_icon > img:hover{
+	opacity:1;
+	cursor:pointer;
+	-webkit-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+  	transition: all .3s ease-in-out;
+}
+
+.wrapper > .header > .groupintroduction > .groupcontent> .memberinfo > .member_info {
+color:white;
+float:left;
+padding:8px 0px 0px 20px;
+}
+
+.wrapper > .header > .groupintroduction > .groupcontent> .memberinfo > .member_info > h4{
+padding:0px 0px 10px 0px;
+font-size:16px;
+}
+
+.wrapper > .header > .groupintroduction > .groupcontent> .memberinfo > .member_info > p {
+padding:0px 0px 10px 0px;
+font-size:12px;
+}
+
+.wrapper > .header > .groupintroduction > .groupheader > h1{
+	font-size:24px;
+	font-weight:bold;
+	padding:10px 0px;
+	letter-spacing: 2px;
+}
+
+.wrapper > .header > .groupintroduction > .groupcontent{
+	color:white;
+	opacity:0.7;
+}
+
+.wrapper > .header > .groupintroduction > .groupcontent:hover{
+	opacity:1;
+	-webkit-transition: all .5s ease-in-out;
+  	-o-transition: all .5s ease-in-out;
+  	transition: all .5s ease-in-out;
+}
+
+.wrapper > .header > .groupintroduction > .groupcontent > h2{
+	font-size:18px;
+	font-weight:bold;
+	padding:15px 15px;
+	letter-spacing: 1px;
+}
+
+.wrapper > .header > .groupintroduction > .groupcontent > p{
+	font-size:14px;
+	padding:5px 15px;
+	line-height: 1.5;
+	letter-spacing: 1px;
+}
+
+.panel{
+height:30px;
+display:none;
+bottom:5px;
+right:33%;
+position: absolute;
+background-color: rgba(0,0,0,0.5);
+box-shadow: 0px 5px 10px -1px rgba(0,0,0,0.5);
+padding:0px 5px;
+}
+
+.panel > ul > li{
+	float:left;
+	padding:5px;
+	color:white;
+}
+
+.panel > ul > li > h4{
+padding:5px;
+text-align:center;
+font-size:18px;
+font-weight:bold;
+border-bottom: 1px solid rgba(255,255,255,0.7);
+}
+
+.panel >  p{
+padding:5px 5px;
+text-align:center;
+color:rgba(255,255,255,0.5);
+}
+
+.panel > ul > li > hr{
+width:100%;}
