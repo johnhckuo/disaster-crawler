@@ -2,13 +2,16 @@
 
 @media (min-width: 1800px) {
 
-#map{    /* ------------------------for PC ------------------------*/
+    /* ------------------------for PC ------------------------*/
+
+#map{
 
 	position:relative;
-	background-color: #00BBFF;
+	background-color:rgba(0,0,0,0);
 	width:800px;
 	height:100%;
-	top:50px;
+	top:-300px;
+	left:-80px;
 
 	
 	border-radius: 5px;
@@ -19,15 +22,15 @@
 #panel{
 	position: absolute;
 	z-index:99;
-	height: 100px;
-	width: 150px;
+	height: 20px;
+	width: 50px;
 	background-color: #fff;
 	-webkit-transition:all .1s;
 	border-radius: 5px;
 	background-color: #000;
 	background-color:rgba(0,0,0,0.3); 
 	color:#fff;
-
+	padding:10px;
 }
 
 path{
@@ -37,34 +40,36 @@ path{
 #info{
 	position: absolute;
 	top: 100px;
-	width: 600px;
+	width: 1000px;
 	height: 200px;
-	right: 250px;
-	background-color: (0,0,0,0.5);
+  	right: 120px;
 }
 
 #info li{
-	border-radius: 5px;
+	/* border-radius: 5px; */
 	background-color:rgba(0,0,0,0.7); 
 	height: 50px;
-	width: 100px;
+	width: 150px;
 	cursor:pointer;
 	-webkit-transition:all .3s;
 	color:white;
 	float:left;
-	margin-right:10px;
+	/* margin-right:10px; */
 	text-align: center;
 	line-height: 45px;
 	color:#ffffff;
 	margin-bottom: 10px;
+	box-shadow: 0px 3px 10px -3px rgba(0,0,0,0.5);
+	opacity:0.5;
 }
 #info li:hover{
 	background-color:rgba(0,0,0,1); 
+	opacity:1;
 }
 path{
 	border:1px solid black;
 }
-.subunit-boundary {
+#subunit-boundary {
   fill: none;
   stroke: #000;
   stroke-dasharray: 2,2;
@@ -72,7 +77,7 @@ path{
 
 }
 
-.county-boundary {
+#county-boundary {
   fill: none;
   stroke: #000;
   stroke-dasharray: 5,0;
@@ -94,13 +99,13 @@ path{
 .widget-scale-ruler {
   display: inline-block;
   height: 4px;
-  border: 2px solid gray;
+  border: 2px solid black;
   border-top: none;
 }
 #ruler{
 	position: absolute;
-	bottom:10px;
-	right:10px;
+	bottom:300px;
+	left:100px;
 	border:1px solid black;
 	padding:5px;
 }
@@ -126,12 +131,11 @@ div.tooltip {
 
 #chart{
 	position:absolute;
-	top:350px;
-	width:850px;
-	height: 300px;
-	right:100px;
-	border:1px solid black;
-	-webkit-transition:all 1s;
+	top:250px;
+	width:900px;
+	height: 500px;
+	right:220px;
+	white-space:normal;
 }
 /* Menu */
 #menu {
@@ -189,15 +193,14 @@ a:hover {
 	-webkit-transition:all .5s;
 }
 
-#mix_fade{
+.hidden{
 	display:none;
+	
 }
-#rain_fade{
-	display:none;
-}
+
 svg{
-	width:1366px;
-	height:900px;
+	width:1500px;
+	height:1700px;
 }
 #description{
 	display: none;
@@ -237,38 +240,41 @@ tr{
 
 #temp_time{
 	position:absolute;	
-	bottom:-300px;
+	bottom:-600px;
 
 }
 #temp_place{
 	position:absolute;	
-	bottom:-300px;
+	bottom:-550px;
 }
 #mix_city{
 	position:absolute;	
-	bottom:-300px;
+	bottom:-550px;
 	left:150px;
 
 }
 #mix_analysis{
 	position:absolute;	
-	bottom:-300px;
+	bottom:-550px;
 
 }
 #LoadingImage{
 	position:absolute;
 	z-index:900;
-	left:100px;
-	top:200px;
+	left:280px;
+	top:350px;
 	width:300px;
 	height: 150px;
 	background-color: rgba(0,0,0,0.5);
 	border-radius:10px;
+
 }
 #LoadingImage img{
 	position:absolute;
 	top:-100px;
 	left:-140px;
+
+
 }
 }
 
