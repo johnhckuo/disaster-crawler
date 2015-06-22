@@ -947,7 +947,7 @@ function updateWeather(){
         }else if (data.weather == '陰'){
           $('.footer_time img').attr("src","img/cloudy.png")
         }else if (data.weather == '晴'){
-          $('.footer_time img').attr("src","img/sunny.png")
+          $('.footer_time img').attr("src","img/Sunny.png")
         }else if (data.weather == 'X'){
           $('.footer_time img').attr("src","img/cloudy.png")
         }else if (data.weather == '陰有雷雨' || data.weather == '陰大雷雨' ){
