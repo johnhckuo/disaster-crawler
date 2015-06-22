@@ -40,9 +40,41 @@ var toogle = function(){
   init();
 }
 
+var check_get = function(){
+  var $_GET = {};
+
+  document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+      function decode(s) {
+          return decodeURIComponent(s.split("+").join(" "));
+      }
+
+      $_GET[decode(arguments[1])] = decode(arguments[2]);
+  });
+  if ($_GET['type'] != null){
+     if ($_GET['type']=='uv'){
+        disaster('uv',null);
+     }else if ($_GET['type']=='rain'){
+        disaster('rainfall',null);
+     }else if ($_GET['type']=='air'){
+        disaster('pm25',null);
+     }else if ($_GET['type']=='history'){
+        extend('history',null);
+     }else if ($_GET['type']=='earthquake'){
+        disaster('earthquake',null);
+     }
+  }
+}
+
+
 var init = function(){
 
   updateWeather();
+  check_get();
+
+  $(".footer_time").hover(function(){
+    $(".panel").slideToggle("fast");
+  });
+
   var Cname = 'C_Name';
   var Tname;
 
@@ -74,7 +106,7 @@ var init = function(){
  });
 
 
-  var mapType; 
+  var mapType , fill; 
 
   if (type == 'county'){
     mapType = 'county-boundary'
@@ -91,20 +123,22 @@ var init = function(){
 
   if (type == 'county'){
   d3.select("svg").selectAll("path").on("mouseenter", function() {          //title div 顯示滑鼠所指向的縣市/行政區
+      fill = $(this).attr("fill");
       $(this).attr("fill", '#00DD77');
       $('#title').html($(this).attr( "name" ));
       $('#panel').css({"height": "20px","width": "50px"});
     }).on("mouseout", function() {
-      $(this).attr("fill", '#55AA00');
+      $(this).attr("fill", fill);
     });
 
   }else{
     d3.select("svg").selectAll("path").on("mouseenter", function() {          //title div 顯示滑鼠所指向的縣市/行政區
+      fill = $(this).attr("fill");
       $(this).attr("fill", '#00DD77');
       $('#title').html($(this).attr( "class" ));
       $('#panel').css({"height": "20px","width": "50px"});
     }).on("mouseout", function() {
-      $(this).attr("fill", '#55AA00');
+      $(this).attr("fill", fill);
     });
   }
   
@@ -142,7 +176,8 @@ var disaster = function(type,button){
     $('#rain_fade').fadeOut("slow");
     $('#temp_choose').fadeOut("slow");
     $('#history_fade').fadeOut("slow");
-     toogleButton(button);
+    if (button!=null)
+      toogleButton(button);
 
      var fill;
      d3.select("svg").selectAll("path").on('mouseout',function(){

@@ -70,8 +70,10 @@ body{
 
 
 .wrapper > .header{
-	margin:0 auto;
+	position:relative;
+	margin:-500px auto;
 	width:600px;
+	z-index:2;
 }
 .wrapper > .header > ul{
 	margin:110px auto;
