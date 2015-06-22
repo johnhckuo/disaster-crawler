@@ -36,13 +36,13 @@ var toogle = function(){
     
   }
 
-  
-
 
   init();
 }
 
 var init = function(){
+
+  updateWeather();
   var Cname = 'C_Name';
   var Tname;
 
@@ -161,8 +161,7 @@ var disaster = function(type,button){
       });
 
      if (type == 'rainfall'){
-     // d3.select("svg").selectAll("path").off("mouseenter");
-     // d3.select("svg").selectAll("path").off("mouseout");
+
      $("#LoadingImage").show();
       $.ajax({ 
         type:'GET', 
@@ -200,7 +199,6 @@ var disaster = function(type,button){
         }
 
 
-           // $('#container').append("<li>"+"<span>"+str[i].Title+"</span></li>");
             
          }
 
@@ -220,7 +218,6 @@ var disaster = function(type,button){
         var color = d3.scale.linear().domain([0,5]).range(["#FFB3FF","#770077"]);
         var path = d3.geo.path().projection( // 路徑產生器
     d3.geo.mercator().center([121,24]).scale(scale) // 座標變換函式
-   // d3.geo.mercator()
   );
         for (var i = 0; i < data.length ; i++){
           $('path').each(function() {
@@ -242,7 +239,6 @@ var disaster = function(type,button){
         }
 
 
-           // $('#container').append("<li>"+"<span>"+str[i].Title+"</span></li>");
             
          }
       });
@@ -290,13 +286,7 @@ var disaster = function(type,button){
       
       $("#chart").html($('#pm25').html())
       $("#chart td:nth-child(3)").css({"text-align":'left','padding-left':'5px'});
-    //  $("#chart").html("<div id='pm25'><table border='1'><tr><td bgcolor='#633300'></td><td>有害(PSI >= 300)</td><td>對一般民眾身體健康無影響。</td></tr><tr><td bgcolor='#800080'></td><td>非常不良(200 <= PSI <= 299)</td><td>對敏感族群健康無立即影響。</td></tr> <tr><td bgcolor='#ff0000'></td><td>不良(101 <= PSI <= 199)</td><td>對敏感族群會有輕微症狀惡化的現象，如臭氧濃度在此範圍，眼鼻會略有刺激感。</td></tr><tr><td bgcolor='#ffff00'></td><td>普通(51 <= PSI <= 100)</td><td>對敏感族群會有明顯惡化的現象，降低其運動能力；一般大眾則視身體狀況，可能產生各種不同的症狀。</td></tr><tr>
-    //    　 <td bgcolor='#00ff00'></td>
-     //     <td>良好(PSI < 50)</td>
-    //      <td>對敏感族群除了 不適症狀顯著惡化並造成某些疾病提早開始；減低正常人的運動能力。</td>
-    //    　</tr>
-    //    </table>
-    //  </div>");
+
 
      }else if(type == 'earthquake'){
 
@@ -903,6 +893,40 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+
+function updateWeather(){
+
+  $.ajax({ 
+        type:'GET', 
+        dataType:'jsonp', 
+       url:'https://www.kimonolabs.com/api/98n56rjs?apikey=x3C3wO491D2hBEkPXsPJ9CgRJXzlEN8V', 
+         success:function (data){
+
+        var data = data.results.collection1[0];
+        if (data.weather == '多雲'){
+          $('.footer_time img').attr("src","img/sunny_cloud.png")
+
+        }else if (data.weather == '陰'){
+          $('.footer_time img').attr("src","img/cloudy.png")
+        }else if (data.weather == '晴'){
+          $('.footer_time img').attr("src","sunny.png")
+        }else if (data.weather == 'X'){
+          $('.footer_time img').attr("src","img/cloudy.png")
+        }else if (data.weather == '陰有雷雨' || data.weather == '陰大雷雨' ){
+          $('.footer_time img').attr("src","img/cloudy_rainy.png")
+        }else if (data.weather == '多雲有雷雨'){
+          $('.footer_time img').attr("src","img/rainy_cloudy_sunny.png")
+        }
+  
+  
+  
+        $('#realtime_temp').html(" "+data.temperature+"°c ")
+        
+      }
+
+    });
+  
 }
  /* $.when(
   // Get the HTML

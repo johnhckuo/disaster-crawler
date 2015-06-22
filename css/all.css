@@ -44,7 +44,7 @@ table {
 body{
 	background-image: url(../img/background.png);
 	background-repeat: no-repeat;
-
+	overflow:hidden;
 }
 
 select{
@@ -148,8 +148,8 @@ body{
 }
 
 .footer_time{
-	bottom:40px;
-	right:0px;
+	bottom:50px;
+	right:20px;
 	width:auto;
 	height:50px;
 	font-family:微軟正黑體;
@@ -185,10 +185,12 @@ font-size:20px;
 }
 
 .footer_time > p > img{
-	height:42px;
-	width:42px;
+	position:absolute;
+	height:80px;
+	width:80px;
+	bottom:5px;
+	right:10px;
 	float:right;
-	background-image: url(../img/weather.png);
 	background-position: -5px -5px;
 }
 

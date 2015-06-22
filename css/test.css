@@ -369,13 +369,13 @@ path{
 .widget-scale-ruler {
   display: inline-block;
   height: 4px;
-  border: 2px solid gray;
+  border: 2px solid black;
   border-top: none;
 }
 #ruler{
 	position: absolute;
-	bottom:10px;
-	right:10px;
+	bottom:300px;
+	left:100px;
 	border:1px solid black;
 	padding:5px;
 }
