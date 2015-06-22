@@ -32,7 +32,7 @@ function updateWeather(){
   
   
         $('#realtime_temp').html(" "+data.temperature+"°c ")
-        
+        $(".footer_time").css("opacity","0.5");
       }
 
     });

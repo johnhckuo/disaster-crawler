@@ -9,13 +9,11 @@ drawTaiwan()
 });
 
 function updateWeather(){
-
   $.ajax({ 
         type:'GET', 
         dataType:'jsonp', 
        url:'https://www.kimonolabs.com/api/98n56rjs?apikey=x3C3wO491D2hBEkPXsPJ9CgRJXzlEN8V', 
          success:function (data){
-
         var data = data.results.collection1[0];
         if (data.weather == '多雲'){
           $('.footer_time img').attr("src","img/sunny_cloud.png")
@@ -33,9 +31,9 @@ function updateWeather(){
         }
   
   
-  
+  		
         $('#realtime_temp').html(" "+data.temperature+"°c ")
-        
+        $(".footer_time").css("opacity","0.5");
       }
 
     });

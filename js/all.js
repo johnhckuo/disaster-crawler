@@ -240,8 +240,9 @@ var disaster = function(type,button){
       });
       $("#chart").html($('#rain').html())
       $("#chart table").css("width",'300px');
-      $("#chart table:nth-child(2)").css("right",'100px');
+      $("#chart table:nth-child(2)").css("right",'80px');
       $("#chart td:nth-child(2)").css({"width":'100px','padding':'5px'});
+
      }else if(type == 'uv'){
       $("#LoadingImage").show();
       $.ajax({ 
@@ -278,7 +279,8 @@ var disaster = function(type,button){
          }
       });
 
-      $("#chart").html($('#uv').html())
+      $("#chart").html($('#uv').html());
+      $("#chart td:nth-child(2)").css("line-height","90px");
 
      }else if (type == 'pm25'){
         $("#LoadingImage").show();
@@ -957,7 +959,7 @@ function updateWeather(){
   
   
         $('#realtime_temp').html(" "+data.temperature+"°c ")
-        
+        $(".footer_time").css("opacity","0.5");
       }
 
     });
