@@ -279,7 +279,9 @@ tr{
 
 }
 
-
+#chart table td{
+	line-height: 35px;
+}
 }
 
 @media (max-width: 1500px) {   /* ------------------------for laptop ------------------------*/
@@ -555,6 +557,10 @@ tr{
 	left:-140px;
 
 
+}
+
+#chart table td{
+	line-height: 35px;
 }
 }
 

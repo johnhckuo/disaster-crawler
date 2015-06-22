@@ -197,7 +197,8 @@ body{
 	font-border:1px;
 	padding:5px 15px;
 	border-radius:20px;
-	opacity:0.5;
+	opacity:0;
+	-webkit-transition:all 1s;
 }
 
 .footer_time:hover{
