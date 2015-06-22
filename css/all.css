@@ -68,6 +68,41 @@ body{
 
 }
 
+.wrapper > .header_second{
+	margin:0 auto;
+	width:600px;
+}
+
+.wrapper > .header_second > ul{
+	margin:110px auto;
+	width:500px;
+	color:white;
+}	
+
+.wrapper > .header_second > ul > li{
+	float:left;
+	display:inline-block;
+	padding:10px;
+	height:90px;
+	width:80px;
+	line-height:160px;
+	text-align:center;
+	background-color: rgba(25,25,25,0.5);
+	font-size:16px;
+	padding:10px;
+	box-shadow:1px 2px 10px -3px rgba(0,0,0,0.5);
+}
+
+.wrapper > .header_second > ul > li:hover{
+	cursor:pointer;
+	box-shadow:1px 2px 10px -3px rgba(255,255,255,0.5);
+	height:100px;
+	-webkit-transition: all .2s ease-in-out;
+  	-o-transition: all .2s ease-in-out;
+  	transition: all .2s ease-in-out;
+}
+
+
 
 .wrapper > .header{
 	position:relative;
@@ -250,6 +285,16 @@ font-size:20px;
 	padding-bottom:20px;
 }
 
+.wrapper > .header_second > .groupintroduction{
+	float:left;
+	width:100%;
+	height:auto;
+	background-color: rgba(0,0,0,0.5);
+	margin:110px auto;
+	box-shadow:0px 21px 5px -14px rgba(0,0,0,0.3);
+	padding-bottom:20px;
+}
+
 .groupheader{
 	text-align: center;
 	padding:10px 0px 5px 0px;
@@ -262,6 +307,8 @@ background-color:rgba(255,255,255,0.5);
 border:0; 
 height:1px; 
 }
+
+
 
 .wrapper > .header > .groupintroduction > .groupcontent> .memberinfo{
 	padding:20px 20px 0px 20px;
@@ -338,6 +385,91 @@ font-size:12px;
 	line-height: 1.5;
 	letter-spacing: 1px;
 }
+
+.wrapper > .header_second > .groupintroduction > hr{
+background-color:rgba(255,255,255,0.5);
+border:0; 
+height:1px; 
+}
+
+
+
+.wrapper > .header_second > .groupintroduction > .groupcontent> .memberinfo{
+	padding:20px 20px 0px 20px;
+	float:left;
+	margin-left:20px;
+}
+
+.wrapper > .header_second > .groupintroduction > .groupcontent> .memberinfo >.member_icon{
+	float:left;
+	border-size:0px;
+	border-width:solid;
+}
+.wrapper > .header_second > .groupintroduction > .groupcontent> .memberinfo >.member_icon > img{
+	border-radius:200px;
+	height:100px;
+	width:100px;
+  	box-shadow:0px 0px 0px 2px #fff, 0px 4px 10px -2px #000000;
+  	opacity:0.5;
+}
+
+.wrapper > .header_second > .groupintroduction > .groupcontent> .memberinfo >.member_icon > img:hover{
+	opacity:1;
+	cursor:pointer;
+	-webkit-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+  	transition: all .3s ease-in-out;
+}
+
+.wrapper > .header_second > .groupintroduction > .groupcontent> .memberinfo > .member_info {
+color:white;
+float:left;
+padding:8px 0px 0px 20px;
+}
+
+.wrapper > .header_second > .groupintroduction > .groupcontent> .memberinfo > .member_info > h4{
+padding:0px 0px 10px 0px;
+font-size:16px;
+}
+
+.wrapper > .header_second > .groupintroduction > .groupcontent> .memberinfo > .member_info > p {
+padding:0px 0px 10px 0px;
+font-size:12px;
+}
+
+.wrapper > .header_second > .groupintroduction > .groupheader > h1{
+	font-size:24px;
+	font-weight:bold;
+	padding:10px 0px;
+	letter-spacing: 2px;
+}
+
+.wrapper > .header_second > .groupintroduction > .groupcontent{
+	color:white;
+	opacity:0.7;
+}
+
+.wrapper > .header_second > .groupintroduction > .groupcontent:hover{
+	opacity:1;
+	-webkit-transition: all .5s ease-in-out;
+  	-o-transition: all .5s ease-in-out;
+  	transition: all .5s ease-in-out;
+}
+
+.wrapper > .header_second > .groupintroduction > .groupcontent > h2{
+	font-size:18px;
+	font-weight:bold;
+	padding:15px 15px;
+	letter-spacing: 1px;
+}
+
+.wrapper > .header_second > .groupintroduction > .groupcontent > p{
+	font-size:14px;
+	padding:5px 15px;
+	line-height: 1.5;
+	letter-spacing: 1px;
+}
+
 
 .panel{
 height:30px;
