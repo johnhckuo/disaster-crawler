@@ -143,7 +143,8 @@ TopoJSON 處理與繪製
 最後結果如右：
 ![alt tag](https://hackpad-attachments.imgix.net/kaohsiung-school.hackpad.com_Ud2g6AKD0Oh_p.415786_1435226910491_%E6%93%B7%E5%8F%96.PNG?fit=max&w=882)
 ##b. 繪製縣市/行政區輪廓
-參考自http://bost.ocks.org/mike/map/，作者寫出了一個function可讀取json檔中的縣市/行政區資料，並劃出界線
+參考自http://bost.ocks.org/mike/map/
+作者寫出了一個function可讀取json檔中的縣市/行政區資料，並劃出界線
 ```javascript
   d3.select("#pathCanvas").append("path")         //縣市/行政區界線
     .datum(topojson.mesh(topodata, topodata.objects[type], function(a, b) { return a !== b ; }))
