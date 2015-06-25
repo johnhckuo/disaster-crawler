@@ -92,9 +92,13 @@ function taipei_rain(type , button){
 #2. 使用D3.js繪製台灣地圖#
 ##a. 繪製台灣輪廓##
 政府在open data官網上釋出了三個等級的資料：
+
 -縣(市)行政區界線
+
 -鄉(鎮、市、區)行政區域界線
+
 -全國村里界圖
+
 因為政府內部所使用系統的關係，釋出的格式均為 SHP 檔格式。感謝 D3.js 的作者 Mike ，剛好他最近在 Github 上開了一個新專案「shapefile」，讓我們可以讀取 SHP 檔並輸出成 GeoJSON 格式；事實上， Mike 已經將 shapefile 整進了他的另一個專案「topojson」，讓我們可以直接由 SHP 檔產生 TopoJSON 檔。
 (ps 有興趣的人可去這個網站看看 )
 
@@ -124,7 +128,7 @@ TopoJSON 處理與繪製
       );
       d3.select("svg").selectAll("path").data(features).enter().append("path").attr("d",path);
 ```
-繪製結果如右：
+繪製結果如下：
 ![alt tag](http://blog.infographics.tw/wp-content/uploads/2015/04/attempt-1.png   )
 現在我們可再進一步針對地圖進行處理，處理如下：
 ```javascript
@@ -249,8 +253,11 @@ function historyRain(data , place){
 
 
 ###參考資料來源：###
+
 -http://blog.infographics.tw/2015/04/visualize-geographics-with-d3js/
+
 -http://bost.ocks.org/mike/map/
+
 -http://canvasjs.com/
 
 
