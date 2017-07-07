@@ -248,7 +248,7 @@ function historyRain(data , place){
 }
 ```
 # 4. 結語
-以上為小弟本次的project介紹，有點簡陋，如有仍不清楚的部分，歡迎email至 johnhckuo@gmail.com
+以上為本次的project介紹，有點簡陋，如有仍不清楚的部分，歡迎email至 johnhckuo@gmail.com
 我已將所有的檔案程式碼上傳至Github，同時也產生了Github Page，要看Demo的人也可前去測試，如有任何的Bug也歡迎回報(製作時程較短，應該有很多Bug，敬請見諒XD)
 最後，感謝看到最後的大家，謝謝你們的捧場支持哈哈
 
