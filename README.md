@@ -142,7 +142,7 @@ TopoJSON 處理與繪製
 ```
 最後結果如右：
 ![alt tag](https://hackpad-attachments.imgix.net/kaohsiung-school.hackpad.com_Ud2g6AKD0Oh_p.415786_1435226910491_%E6%93%B7%E5%8F%96.PNG?fit=max&w=882)
-##b. 繪製縣市/行政區輪廓
+## b. 繪製縣市/行政區輪廓
 參考自http://bost.ocks.org/mike/map/
 作者寫出了一個function可讀取json檔中的縣市/行政區資料，並劃出界線
 ```javascript
@@ -179,7 +179,7 @@ TopoJSON 處理與繪製
     $('#panel').css({'top':mouseY,'left':mouseX}).fadeIn('slow');
   });
 ```
-##c. 匯入經緯度資訊至網頁的台灣地圖中##
+## c. 匯入經緯度資訊至網頁的台灣地圖中
 麻煩的來了，由於政府提供的shp檔中沒有經緯度這種東西，而有些災害如地震發生區域又是以經緯度來定位其震央位置，但我們網頁上的只是單純的svg向量圖，沒有所謂的座標，因此我的方式是開啟google地圖，並以直尺去測量台灣長度，在測量我自己網頁的台灣長度，換算出比例尺之後，可推出我網頁中svg邊界位置是在google地圖中的何處，在取其經緯度，寫出兩個funciton分別計算其經度和緯度，並換算為該點應該處於該svg中的何處(這方法很笨我知道...希望能有高人指點小弟此function更好的寫法，小弟感激不盡><) ：
 ```javascript
 function mapTopixelX(x){
