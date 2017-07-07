@@ -1,13 +1,13 @@
-#Taiwan Disaster in Real Time Display#
+# Taiwan Disaster in Real Time Display
 
-###Github Pages : http://johnhckuo.github.io/Taiwan_RealTime_Disaster/###
+### Github Pages : http://johnhckuo.github.io/Taiwan_RealTime_Disaster/
 
 ![alt tag](https://hackpad-attachments.imgix.net/kaohsiung-school.hackpad.com_Ud2g6AKD0Oh_p.415786_1435226206648_%E6%93%B7%E5%8F%96.PNG?fit=max&w=882)
 ![alt tag](https://hackpad-attachments.imgix.net/kaohsiung-school.hackpad.com_Ud2g6AKD0Oh_p.415786_1435226150167_%E6%93%B7%E5%8F%96.PNG?fit=max&w=882)
 
 
-#1. 資料來源蒐集與整理#
-##a. 多來源資料彙整##
+# 1. 資料來源蒐集與整理
+## a. 多來源資料彙整
 由於台灣政府將氣象、災害資料依照月份/年份或是災害類型「分別」放在各個網頁，因此導致同一個災害如降雨，從2014至2015可能就有24個頁面(每月份一個html檔)，處理起來十分不方便，因此我們使用Kinomo API，將這些頁面的資訊擷取過濾
 
 ![alt tag](https://hackpad-attachments.imgix.net/kaohsiung-school.hackpad.com_Ud2g6AKD0Oh_p.415786_1435221031025_%E6%93%B7%E5%8F%96.PNG?fit=max&w=882)
@@ -15,7 +15,7 @@
 並整合至同一個json檔
 
 ![alt tag](https://hackpad-attachments.imgix.net/kaohsiung-school.hackpad.com_Ud2g6AKD0Oh_p.415786_1435221058381_%E6%93%B7%E5%8F%96.PNG?fit=max&w=882)
-##b. 多來源資料處理
+## b. 多來源資料處理
 但若沒有使用Kinomo內建的API整合功能的話，你的Ajax來源會多的非常誇張，而且很多來源是要同時處理，如使用者選擇降雨資訊，他會希望看到20XX到2015年的資訊，那這樣大概會需要跑2015-20xx乘上12個Ajax，不僅僅會有效能的問題，還會有變數undefined的語法錯誤，原因是Ajax為非同步，但javascript compiler會先跑完程式碼，這時若有一些變數原本是要拿來接Ajax的response，但因為他還沒跑完因此還沒return，這時那個變數就會是null或undefined，之後的處理也會出問題，這時就要使用jquery的when() 和 then() function，用法如下：
 ```javascript
 function taipei_rain(type , button){
@@ -89,8 +89,8 @@ function taipei_rain(type , button){
       var data = arguments[j][0].results.collection1;
  // 接下來就可以做自己想要的data process
  ```
-#2. 使用D3.js繪製台灣地圖#
-##a. 繪製台灣輪廓##
+# 2. 使用D3.js繪製台灣地圖
+## a. 繪製台灣輪廓
 政府在open data官網上釋出了三個等級的資料：
 
 -縣(市)行政區界線
@@ -195,7 +195,7 @@ function mapTopixelY(y){
   return resultY;
 }
 ```
-#3. 使用Canvas.js繪製即時表格#
+# 3. 使用Canvas.js繪製即時表格
 根據前面小節「多來源資料處理」部分的說明，在程式碼最後是做資料的處理，並可呼叫下面function，並把所有Ajax 資料push進一個陣列，並以參數形式傳給此function，並開始繪製圖表：
 ```javascript
 function historyRain(data , place){
@@ -247,13 +247,13 @@ function historyRain(data , place){
 
 }
 ```
-#4. 結語#
+# 4. 結語
 以上為小弟本次的project介紹，有點簡陋，如有仍不清楚的部分，歡迎email至 johnhckuo@gmail.com
 我已將所有的檔案程式碼上傳至Github，同時也產生了Github Page，要看Demo的人也可前去測試，如有任何的Bug也歡迎回報(製作時程較短，應該有很多Bug，敬請見諒XD)
 最後，感謝看到最後的大家，謝謝你們的捧場支持哈哈
 
 
-###參考資料來源：###
+### 參考資料來源：
 
 -http://blog.infographics.tw/2015/04/visualize-geographics-with-d3js/
 
