@@ -1,10 +1,9 @@
-# Taiwan Disaster in Real Time Display
+# Taiwan Disaster Visualizer <a target="_blank" href="https://opensource.org/licenses/MIT" title="License: MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a> <a target="_blank" href="http://makeapullrequest.com" title="PRs Welcome"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"></a>
 
-### Github Pages : http://johnhckuo.github.io/Taiwan_RealTime_Disaster/
-
-![alt tag](https://hackpad-attachments.imgix.net/kaohsiung-school.hackpad.com_Ud2g6AKD0Oh_p.415786_1435226206648_%E6%93%B7%E5%8F%96.PNG?fit=max&w=882)
-![alt tag](https://hackpad-attachments.imgix.net/kaohsiung-school.hackpad.com_Ud2g6AKD0Oh_p.415786_1435226150167_%E6%93%B7%E5%8F%96.PNG?fit=max&w=882)
-
+<p align=center>
+<img src="https://hackpad-attachments.imgix.net/kaohsiung-school.hackpad.com_Ud2g6AKD0Oh_p.415786_1435226206648_%E6%93%B7%E5%8F%96.PNG?fit=max&w=882">
+<img src="https://hackpad-attachments.imgix.net/kaohsiung-school.hackpad.com_Ud2g6AKD0Oh_p.415786_1435226150167_%E6%93%B7%E5%8F%96.PNG?fit=max&w=882">
+</p>
 
 ## 1. 資料來源蒐集與整理
 ### a. 多來源資料彙整
